@@ -1,5 +1,6 @@
 package loginSystem;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,7 +68,31 @@ public class LoginPage implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		// Reseting the login fields when the reset button is clicked
+		if (e.getSource() == resetButton) {
+			
+			userIDField.setText("");
+			userPasswordField.setText("");
+			
+		}
+		
+		// Logging in the user when the login button is clicked
+		if (e.getSource() == loginButton) {
+			
+			String userID = userIDField.getText();
+			String userPassword = String.valueOf(userPasswordField.getPassword());
+			
+			if (logininfo.containsKey(userID)) {
+				if (logininfo.get(userID).equals(userPassword)) {
+					
+					messageLabel.setForeground(Color.green);
+					messageLabel.setText("Login Successful!");
+					
+				}	
+			}
+			
+		}
 		
 	}
 	
