@@ -90,6 +90,18 @@ public class LoginPage implements ActionListener {
 					messageLabel.setText("Login Successful!");
 					
 				}	
+				else {
+					
+					messageLabel.setForeground(Color.red);
+					messageLabel.setText("Wrong Password");
+					
+				}
+			}
+			else {
+				
+				messageLabel.setForeground(Color.red);
+				messageLabel.setText("Username Not Found");
+				
 			}
 			
 		}
