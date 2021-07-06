@@ -63,6 +63,7 @@ public class LoginPage implements ActionListener {
 		frame.setSize(420, 420);
 		frame.setLayout(null);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		
 	}
 
@@ -91,7 +92,7 @@ public class LoginPage implements ActionListener {
 					frame.dispose();
 					
 					// Instance of our GameFrame page
-					new GameFrame();
+					GameFrame gameFrame = new GameFrame();
 					
 					// Instance of our welcome page
 					//WelcomePage welcomePage = new WelcomePage(userID);
