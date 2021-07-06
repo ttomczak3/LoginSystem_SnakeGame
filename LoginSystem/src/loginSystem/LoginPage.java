@@ -90,8 +90,11 @@ public class LoginPage implements ActionListener {
 					messageLabel.setText("Login Successful!");
 					frame.dispose();
 					
+					// Instance of our GameFrame page
+					new GameFrame();
+					
 					// Instance of our welcome page
-					WelcomePage welcomePage = new WelcomePage(userID);
+					//WelcomePage welcomePage = new WelcomePage(userID);
 					
 				}	
 				else {
