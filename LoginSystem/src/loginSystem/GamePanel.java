@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	static final int DELAY = 75;
 	final int x[] = new int[GAME_UNITS];
 	final int y[] = new int[GAME_UNITS];
-	int bodyparts = 6;
+	int bodyParts = 6;
 	int applesEaten;
 	int appleX;
 	int appleY;
@@ -71,6 +71,20 @@ public class GamePanel extends JPanel implements ActionListener {
 		g.setColor(Color.red);
 		g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 		
+		// Drawing the snake
+		for (int i = 0; i < bodyParts; i++) {
+			
+			if (i == 0) {
+				g.setColor(Color.green);
+				g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+			}
+			else {
+				g.setColor(new Color(45, 180, 0));
+				g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+			}
+			
+		}
+		
 	}
 	
 	// Spawning the apple on a random coordinate
@@ -83,6 +97,30 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	public void move() {
 		
+		// Iterating through all of the body parts
+		for (int i = bodyParts; i > 0; i--) {
+			
+			 x[i] = x[i-1];
+			 y[i] = y[i-1];
+			
+		}
+		
+		// Changing the direction where the snake is headed
+		switch (direction) {
+		case 'U':
+			y[0] = y[0] - UNIT_SIZE;
+			break;
+		case 'D':
+			y[0] = y[0] + UNIT_SIZE;
+			break;
+		case 'L':
+			x[0] = x[0] - UNIT_SIZE;
+			break;
+		case 'R':
+			x[0] = x[0] + UNIT_SIZE;
+			break;
+		}
+		
 	}
 	
 	public void checkApple() {
@@ -90,6 +128,39 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 	
 	public void checkCollisions() {
+		
+		// Checking to see if the snake's head collides with it's body
+		for (int i = bodyParts; i > 0; i--) {
+			
+			if((x[0] == x[i]) && (y[0] == y[i])) {
+				running = false;
+			}
+			
+		}
+		
+		// Checking if the snake's head touches left border
+		if (x[0] < 0) {
+			running = false;
+		}
+		
+		// Checking if the snake's head touches right border
+		if (x[0] > SCREEN_WIDTH) {
+			running = false;
+		}
+		
+		// Checking if the snake's head touches top border
+		if (y[0] < 0) {
+			running = false;
+		}
+		
+		// Checking if the snake's head touches bottom border
+		if (y[0] > SCREEN_HEIGHT) {
+			running = false;
+		}
+		
+		if(!running) {
+			timer.stop();
+		}
 		
 	}
 	
@@ -99,7 +170,15 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		// Calling the methods when the game is running
+		if (running) {
+			move();
+			checkApple();
+			checkCollisions();
+			
+		}
+		repaint();
 		
 	}
 	
