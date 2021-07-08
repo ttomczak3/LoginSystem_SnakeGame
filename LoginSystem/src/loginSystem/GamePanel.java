@@ -187,6 +187,35 @@ public class GamePanel extends JPanel implements ActionListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			
+			// Adding player controls
+			switch (e.getKeyCode()) {
+			
+			case KeyEvent.VK_A:
+				if (direction != 'R') {
+					direction = 'L';
+				}
+				break;
+				
+			case KeyEvent.VK_D:
+				if (direction != 'L') {
+					direction = 'R';
+				}
+				break;
+				
+			case KeyEvent.VK_W:
+				if (direction != 'D') {
+					direction = 'U';
+				}
+				break;
+				
+			case KeyEvent.VK_S:
+				if (direction != 'U') {
+					direction = 'D';
+				}
+				break;
+			
+			}
+			
 		}
 		
 	}
