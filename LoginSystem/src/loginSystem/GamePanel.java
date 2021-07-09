@@ -196,9 +196,9 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 		// Game over text
 		g.setColor(Color.red);
-		g.setFont(new Font("Ink Free", Font.BOLD, 75));
+		g.setFont(new Font("Ink Free", Font.BOLD, 25));
 		FontMetrics metrics2 = getFontMetrics(g.getFont());
-		g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 2);
+		g.drawString("Game Over, click on the screen to reset", (SCREEN_WIDTH - metrics2.stringWidth("Game Over, click on the screen to reset")) / 2, SCREEN_HEIGHT / 2);
 		
 	}
 	
@@ -207,6 +207,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 		// Calling the methods when the game is running
 		if (running) {
+			
 			move();
 			checkApple();
 			checkCollisions();
